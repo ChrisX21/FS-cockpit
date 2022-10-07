@@ -1,5 +1,3 @@
 {
-    "sketch": "FScockpit.ino",
-    "output": "build",
     "board": "arduino:avr:leonardo"
 }
