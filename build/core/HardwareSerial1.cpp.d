@@ -1,4 +1,4 @@
-h:\FS-cockpit\build\core\HardwareSerial1.cpp.o: \
+c:\Users\chris\Documents\FS-cockpit\build\core\HardwareSerial1.cpp.o: \
  C:\Users\chris\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino\HardwareSerial1.cpp \
  C:\Users\chris\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino\Arduino.h \
  C:\Users\chris\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino\binary.h \

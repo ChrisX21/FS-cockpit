@@ -1,5 +1,5 @@
-h:\FS-cockpit\build\sketch\fs-cockpit.ino.cpp.o: \
- h:\FS-cockpit\build\sketch\fs-cockpit.ino.cpp \
+c:\Users\chris\Documents\FS-cockpit\build\sketch\FScockpit.ino.cpp.o: \
+ c:\Users\chris\Documents\FS-cockpit\build\sketch\FScockpit.ino.cpp \
  C:\Users\chris\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino/Arduino.h \
  C:\Users\chris\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino/binary.h \
  C:\Users\chris\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.5\cores\arduino/WCharacter.h \
