@@ -34,10 +34,39 @@ void loop()
 void buttons()
 {
     byte yokeButtons[] = {1, 2, 3, 5, 6, 7, 8};
+
+while (true)    
+{   
+    byte btn1 = digitalRead(yokeButtons[1]);
+    byte btn2 = digitalRead(yokeButtons[2]);
+    byte btn3 = digitalRead(yokeButtons[3]);
+    byte btn4 = digitalRead(yokeButtons[4]);
+
+    byte sw1 = digitalRead(yokeButtons[5]);
+    byte DblSw1 = digitalRead(yokeButtons[6]);
+    byte DblSw2 = digitalRead(yokeButtons[7]);
+
+    if (btn1 == HIGH)
+    {
+        /* code */
+    }
+    
+                
+}
+        
+
 }
 
 void throttle()
 {
     byte throttleButtons[] = {9, 14, 15, 16};
-    
+    while (true)
+    {
+        int btn1 = digitalRead(throttleButtons[1]);
+        int btn2 = digitalRead(throttleButtons[2]);
+        int btn3 = digitalRead(throttleButtons[3]);
+        int btn4 = digitalRead(throttleButtons[4]);
+    }
+        
+
 }
