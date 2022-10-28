@@ -1,19 +1,52 @@
 #include "Joystick.h"
 
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_JOYSTICK,
-        16, 0,
+        11, 0,
         true, true, false,
-        false, false, false,
-        false, false,
+        true, true, false,
+        false, true,
         false, false, false);
 
 int AxisX = 0;
 int AxisY = 0;
+int AxisRotationX = 0;
+int AxisRotationY = 0;
+int AxisThrottle = 0;
+
+    byte btn1;
+    byte btn2;
+    byte btn3;
+    byte btn4;
+    byte sw1;
+    byte DblSw1;
+    byte DblSw2;
+
+const byte throttleButtons[4] = {9, 14, 15, 16};
+
+    byte Tbtn1 = digitalRead(throttleButtons[1]);
+    byte Tbtn2 = digitalRead(throttleButtons[2]);
+    byte Tbtn3 = digitalRead(throttleButtons[3]);
+    byte Tbtn4 = digitalRead(throttleButtons[4]);
 
 void setup()
 {
     Joystick.begin();
-    Serial.begin(9600);    
+    Serial.begin(9600);  
+    
+    //yoke buttons pinout
+    pinMode(btn1, INPUT_PULLUP);
+    pinMode(btn2, INPUT_PULLUP);
+    pinMode(btn3, INPUT_PULLUP);
+    pinMode(btn4, INPUT_PULLUP);
+    pinMode(sw1, INPUT_PULLUP);
+    pinMode(DblSw1, INPUT_PULLUP);
+    pinMode(DblSw2, INPUT_PULLUP);
+    //throttle buttons pinout
+    pinMode(Tbtn1, INPUT_PULLUP);
+    pinMode(Tbtn2, INPUT_PULLUP);
+    pinMode(Tbtn3, INPUT_PULLUP);
+    pinMode(Tbtn4, INPUT_PULLUP);
+    
 }   
 
 void loop()
@@ -28,45 +61,15 @@ void loop()
 
     Joystick.setYAxis(AxisY);
 
-    delay(5); //delay 5 ms to ensure read is correct and to give time;
+    AxisRotationX = analogRead(A2); //assigning axis X rotation for the propeller pitch;
+    AxisRotationX = map(AxisRotationX, 0, 1023, 0, 255);//ToDo: Actual pin layout for prop pitch;
+
+    AxisRotationY = analogRead(A3); //assigning axis Y rotation for the AirToFuel Ratio/mixture;
+    AxisRotationY = map(AxisRotationY, 0, 1023, 0, 255);//ToDo: Actual pin layout for mixture;
+
+    AxisThrottle = analogRead(A4); //assigning axis Y rotation for the throttle;
+    AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);//ToDo: Actual pin layout for throttle;
+
+    delay(10); //delay 10ms to ensure read is correct and to give time for controller read;
 }
 
-void buttons()
-{
-    byte yokeButtons[] = {1, 2, 3, 5, 6, 7, 8};
-
-while (true)    
-{   
-    byte btn1 = digitalRead(yokeButtons[1]);
-    byte btn2 = digitalRead(yokeButtons[2]);
-    byte btn3 = digitalRead(yokeButtons[3]);
-    byte btn4 = digitalRead(yokeButtons[4]);
-
-    byte sw1 = digitalRead(yokeButtons[5]);
-    byte DblSw1 = digitalRead(yokeButtons[6]);
-    byte DblSw2 = digitalRead(yokeButtons[7]);
-
-    if (btn1 == HIGH)
-    {
-        /* code */
-    }
-    
-                
-}
-        
-
-}
-
-void throttle()
-{
-    byte throttleButtons[] = {9, 14, 15, 16};
-    while (true)
-    {
-        int btn1 = digitalRead(throttleButtons[1]);
-        int btn2 = digitalRead(throttleButtons[2]);
-        int btn3 = digitalRead(throttleButtons[3]);
-        int btn4 = digitalRead(throttleButtons[4]);
-    }
-        
-
-}
