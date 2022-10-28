@@ -13,20 +13,19 @@ int AxisRotationX = 0;
 int AxisRotationY = 0;
 int AxisThrottle = 0;
 
-    byte btn1;
-    byte btn2;
-    byte btn3;
-    byte btn4;
-    byte sw1;
-    byte DblSw1;
-    byte DblSw2;
+const byte btn1 = 2;
+const byte btn2 = 3;
+const byte btn3 = 5;
+const byte btn4 = 6;
+const byte sw1 = 7;
+const byte DblSw1 = 8;
+const byte DblSw2 = 9;
 
-const byte throttleButtons[4] = {9, 14, 15, 16};
+const byte Tbtn1 = 10;
+const byte Tbtn2 = 16;
+const byte Tbtn3 = 14;
+const byte Tbtn4 = 15;
 
-    byte Tbtn1 = digitalRead(throttleButtons[1]);
-    byte Tbtn2 = digitalRead(throttleButtons[2]);
-    byte Tbtn3 = digitalRead(throttleButtons[3]);
-    byte Tbtn4 = digitalRead(throttleButtons[4]);
 
 void setup()
 {
@@ -41,12 +40,12 @@ void setup()
     pinMode(sw1, INPUT_PULLUP);
     pinMode(DblSw1, INPUT_PULLUP);
     pinMode(DblSw2, INPUT_PULLUP);
+    
     //throttle buttons pinout
     pinMode(Tbtn1, INPUT_PULLUP);
     pinMode(Tbtn2, INPUT_PULLUP);
     pinMode(Tbtn3, INPUT_PULLUP);
     pinMode(Tbtn4, INPUT_PULLUP);
-    
 }   
 
 void loop()
@@ -71,5 +70,28 @@ void loop()
     AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);//ToDo: Actual pin layout for throttle;
 
     delay(10); //delay 10ms to ensure read is correct and to give time for controller read;
+    
+}
+
+void buttonCheck()
+{
+    byte btn1State;
+    byte btn2State;
+    byte btn3State;
+    byte btn4State;
+    byte sw1State;
+    byte DblSw1State;
+    byte DblSw2State;
+
+    byte Tbtn1State;
+    byte Tbtn2State;
+    byte Tbtn3State;
+    byte Tbtn4State;
+
+    for (int i = 0; i < 11; i++)
+    {
+        
+    }
+    
 }
 
