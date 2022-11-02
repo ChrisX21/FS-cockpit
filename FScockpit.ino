@@ -46,12 +46,18 @@ void loop()
     AxisRotationX = analogRead(A2); //assigning axis X rotation for the propeller pitch;
     AxisRotationX = map(AxisRotationX, 0, 1023, 0, 255);//ToDo: Actual pin layout for prop pitch;
 
+    Joystick.setRxAxis(AxisRotationX);
+
     AxisRotationY = analogRead(A3); //assigning axis Y rotation for the AirToFuel Ratio/mixture;
     AxisRotationY = map(AxisRotationY, 0, 1023, 0, 255);//ToDo: Actual pin layout for mixture;
-
+    
+    Joystick.setRyAxis(AxisRotationY);
+    
     AxisThrottle = analogRead(A4); //assigning axis Y rotation for the throttle;
     AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);//ToDo: Actual pin layout for throttle;
 
+    Joystick.setThrottle(AxisThrottle);
+    
     delay(10); //delay 10ms to ensure read is correct and to give time for controller read;
 }
 
