@@ -1,5 +1,7 @@
 #include "Joystick.h"
 
+#define BUTTON_COUNT 11
+
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_JOYSTICK,
         11, 0,
         true, true, false,
@@ -13,43 +15,24 @@ int AxisRotationX = 0;
 int AxisRotationY = 0;
 int AxisThrottle = 0;
 
-const byte btn1 = 2;
-const byte btn2 = 3;
-const byte btn3 = 5;
-const byte btn4 = 6;
-const byte sw1 = 7;
-const byte DblSw1 = 8;
-const byte DblSw2 = 9;
-
-const byte Tbtn1 = 10;
-const byte Tbtn2 = 16;
-const byte Tbtn3 = 14;
-const byte Tbtn4 = 15;
-
+byte buttonPins[BUTTON_COUNT] = 
+{
+    2, 3, 5, 6, 7, 8, 9, 10, 16, 14, 15
+};
 
 void setup()
 {
     Joystick.begin();
     Serial.begin(9600);  
     
-    //yoke buttons pinout
-    pinMode(btn1, INPUT_PULLUP);
-    pinMode(btn2, INPUT_PULLUP);
-    pinMode(btn3, INPUT_PULLUP);
-    pinMode(btn4, INPUT_PULLUP);
-    pinMode(sw1, INPUT_PULLUP);
-    pinMode(DblSw1, INPUT_PULLUP);
-    pinMode(DblSw2, INPUT_PULLUP);
-    
-    //throttle buttons pinout
-    pinMode(Tbtn1, INPUT_PULLUP);
-    pinMode(Tbtn2, INPUT_PULLUP);
-    pinMode(Tbtn3, INPUT_PULLUP);
-    pinMode(Tbtn4, INPUT_PULLUP);
+    for (byte i = 0; i < BUTTON_COUNT; i++)
+        pinMode(buttonPins[i], INPUT_PULLUP);    
 }   
 
 void loop()
 {
+    readButtonStates();
+
     AxisX = analogRead(A0); //assigning axis X for the yoke;
     AxisX = map(AxisX, 0, 1023, 0, 255);
 
@@ -73,25 +56,11 @@ void loop()
     
 }
 
-void buttonCheck()
+void readButtonStates()
 {
-    byte btn1State;
-    byte btn2State;
-    byte btn3State;
-    byte btn4State;
-    byte sw1State;
-    byte DblSw1State;
-    byte DblSw2State;
-
-    byte Tbtn1State;
-    byte Tbtn2State;
-    byte Tbtn3State;
-    byte Tbtn4State;
-
-    for (int i = 0; i < 11; i++)
+    for (int i = 0; i < BUTTON_COUNT; i++)
     {
-        
+        int state = digitalRead(buttonPins[i]);
+        Joystick.setButton(i, buttonPins[i]);
     }
-    
 }
-
