@@ -26,7 +26,7 @@ void setup()
     Serial.begin(9600);  
     
     for (byte i = 0; i < BUTTON_COUNT; i++)
-        pinMode(buttonPins[i], INPUT_PULLUP);    
+        pinMode(buttonPins[i], INPUT_PULLUP);  
 }   
 
 void loop()
@@ -53,7 +53,6 @@ void loop()
     AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);//ToDo: Actual pin layout for throttle;
 
     delay(10); //delay 10ms to ensure read is correct and to give time for controller read;
-    
 }
 
 void readButtonStates()
@@ -61,6 +60,6 @@ void readButtonStates()
     for (int i = 0; i < BUTTON_COUNT; i++)
     {
         int state = digitalRead(buttonPins[i]);
-        Joystick.setButton(i, buttonPins[i]);
+        Joystick.setButton(i, !state);
     }
 }
