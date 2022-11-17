@@ -1,4 +1,4 @@
-#include "Joystick.h"
+#include <Joystick.h>
 
 #define BUTTON_COUNT 11
 
@@ -44,17 +44,17 @@ void loop()
     Joystick.setYAxis(AxisY);
 
     AxisRotationX = analogRead(A2); //assigning axis X rotation for the propeller pitch;
-    AxisRotationX = map(AxisRotationX, 0, 1023, 0, 255);//ToDo: Actual pin layout for prop pitch;
+    AxisRotationX = map(AxisRotationX, 0, 1023, 0, 255);
 
     Joystick.setRxAxis(AxisRotationX);
 
-    AxisRotationY = analogRead(A3); //assigning axis Y rotation for the AirToFuel Ratio/mixture;
-    AxisRotationY = map(AxisRotationY, 0, 1023, 0, 255);//ToDo: Actual pin layout for mixture;
+    AxisRotationY = analogRead(A3); //assigning axis Y rotation for the AirToFuel Ratio/Mixture;
+    AxisRotationY = map(AxisRotationY, 0, 1023, 0, 255);
     
     Joystick.setRyAxis(AxisRotationY);
     
     AxisThrottle = analogRead(A4); //assigning axis Y rotation for the throttle;
-    AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);//ToDo: Actual pin layout for throttle;
+    AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);
 
     Joystick.setThrottle(AxisThrottle);
     
@@ -69,3 +69,4 @@ void readButtonStates()
         Joystick.setButton(i, !state);
     }
 }
+//Made by Kristiyan Aleksiev
