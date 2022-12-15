@@ -23,42 +23,37 @@ byte buttonPins[BUTTON_COUNT] =
 void setup()
 {
     Joystick.begin();
-    Serial.begin(9600);  
-    
+        
     for (byte i = 0; i < BUTTON_COUNT; i++)
         pinMode(buttonPins[i], INPUT_PULLUP);  
+
+    Joystick.setXAxisRange(0, 1023);
+    Joystick.setYAxisRange(0, 1023);
+    Joystick.setRxAxisRange(0,1023);
+    Joystick.setRyAxisRange(0, 1023);
 }   
 
 void loop()
 {
     readButtonStates();
-
+    //main controls (yoke):
     AxisX = analogRead(A0); //assigning axis X for the yoke;
-    AxisX = map(AxisX, 0, 1023, 0, 255);
-
     Joystick.setXAxis(AxisX);
 
     AxisY = analogRead(A1); //assigning axis Y for the yoke;
-    AxisY = map(AxisY, 0, 1023, 0, 255);
-
     Joystick.setYAxis(AxisY);
 
-    AxisRotationX = analogRead(A2); //assigning axis X rotation for the propeller pitch;
-    AxisRotationX = map(AxisRotationX, 0, 1023, 0, 255);
+    //throttle quadrant:
+    AxisThrottle = analogRead(A2); //assigning axis for throttle;
+    Joystick.setThrottle(AxisThrottle);
 
+    AxisRotationX = analogRead(A3); //assigning axis for AirToFuel Ratio/Mixture;
     Joystick.setRxAxis(AxisRotationX);
 
-    AxisRotationY = analogRead(A3); //assigning axis Y rotation for the AirToFuel Ratio/Mixture;
-    AxisRotationY = map(AxisRotationY, 0, 1023, 0, 255);
+    //AxisRotationY = analogRead(A4); //assgning axis for prop angle;
+    //Joystick.setRyAxis(AxisRotationY);
     
-    Joystick.setRyAxis(AxisRotationY);
-    
-    AxisThrottle = analogRead(A4); //assigning axis Y rotation for the throttle;
-    AxisThrottle = map(AxisThrottle, 0, 1023, 0, 255);
-
-    Joystick.setThrottle(AxisThrottle);
-    
-    delay(10); //delay 10ms to ensure read is correct and to give time for controller read;
+    delay(10); //delay 10ms to ensure read is correct and to give time for controller read to be complete;
 }
 
 void readButtonStates()
